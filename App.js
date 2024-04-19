@@ -3,6 +3,15 @@ import { Button, Modal, StyleSheet, Text, View } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import * as Notifications from 'expo-notifications';
 
+
+Notifications.setNotificationHandler({
+  handleNotification: async () => ({
+    shouldShowAlert: true,
+    shouldPlaySound: false,
+    shouldSetBadge: false,
+  }),
+});
+
 // Function to check and request notification permissions
 async function checkNotificationPermissions() {
   const { status } = await Notifications.getPermissionsAsync();
