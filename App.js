@@ -17,16 +17,23 @@ Notifications.setNotificationHandler({
 export default function App() {
 
 
-  // used to act on information when we receive info
+  // used to act on information when we RECEIVED the notifcaiton
   useEffect(()=>{
-    const subscsription = Notifications.addNotificationReceivedListener((notification)=>{
+    const subscsription1 = Notifications.addNotificationReceivedListener((notification)=>{
       console.log("NOTIFICATION RECEIVED");
       console.log(notification);
     });
 
+    //used to act on information when we RESPOND to notification
+    const subscsription2 = Notifications.addNotificationResponseReceivedListener((response)=>{
+      console.log('USER CLICKED');
+      console.log(response);
+    });
+
     //best practive to remove it
     return ()=>{
-      subscsription.remove();
+      subscsription1.remove();
+      subscsription2.remove();
     };
     
   },[]);
